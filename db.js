@@ -15,8 +15,12 @@ const options = {
     connectTimeoutMS: 10000
 }
 
+let uri;
+
 if (process.env.PROD) {
-    const uri = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
+    uri = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
+} else {
+    uri = `mongodb://db/local`;
 }
 
 mongoose.connect(uri, options).then(() => {
