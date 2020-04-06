@@ -6,7 +6,8 @@
   "license": "MIT",
   "main": "app.js",
   "scripts": {
-    "start": "node_modules/.bin/nodemon app.js"
+    "dev": "node_modules/.bin/nodemon app.js",
+    "prod": "PROD=true node app.js"
   },
   "keywords": [
     "nodejs",

@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
-const { MONGO_DB } = process.env;
+const { 
+    MONGO_HOST,
+    MONGO_PORT,
+    MONGO_USER,
+    MONGO_PASS,
+    MONGO_DB 
+} = process.env;
 
 const options = {
     useNewUrlParser: true,
@@ -9,8 +15,9 @@ const options = {
     connectTimeoutMS: 10000
 }
 
-
-const uri = `mongodb://db/${MONGO_DB}`;
+if (process.env.PROD) {
+    const uri = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
+}
 
 mongoose.connect(uri, options).then(() => {
     console.log('Mongoose connected')
